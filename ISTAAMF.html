@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            background: #1D4371;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+        }
+        
+        .form-container {
+            background: linear-gradient(to bottom, #CBB26A, #1D4371);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 16px;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            margin: 5px 0 15px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+
+        select option {
+            background: #1D4371;
+            color: white;
+        }
+
+        input:focus, select:focus {
+            border-color: #FFD700;
+            box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button {
+            width: 48%;
+            padding: 14px;
+            background: linear-gradient(to right, #FFD700, #E6C200);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #E6C200, #FFD700);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Enter Investment Details</h2>
+    <form id="customForm">
+        <div class="form-page" id="page1">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" pattern="^[A-Za-z ]+$" title="Name should contain only alphabets and spaces" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" pattern="^[0-9]{10}$" title="Phone number must be exactly 10 digits" required>
+
+            <button type="button" onclick="nextPage()">Next</button>
+        </div>
+
+        <div class="form-page" id="page2" style="display: none;">
+            <label for="age">What is your age?</label>
+            <select id="age" name="age" required>
+                <option value="" disabled selected>Select</option>
+                <option>Above 60</option>
+                <option>50-60</option>
+                <option>35-50</option>
+                <option>Below 35</option>
+            </select>
+
+            <label for="income">What is your primary source of income?</label>
+            <select id="income" name="income" required>
+                <option value="" disabled selected>Select</option>
+                <option>Pension Retirement Funds</option>
+                <option>Fixed Salary</option>
+                <option>Business/Variable Income</option>
+                <option>Multiple income sources</option>
+            </select>
+
+            <label for="dependency">What is your current financial dependency status?</label>
+            <select id="dependency" name="dependency" required>
+                <option value="" disabled selected>Select</option>
+                <option>Sole Breadwinner</option>
+                <option>Partially dependent family</option>
+                <option>No dependents, but planning for future</option>
+                <option>No dependents, financially independent</option>
+            </select>
+
+            <label for="Time">How long do you plan to stay invested?</label>
+            <select id="Time" name="Time" required>
+                <option value="" disabled selected>Select</option>
+                <option>Less than 3 years</option>
+                <option>3-5 years</option>
+                <option>5-10 years</option>
+                <option>More than 10 years</option>
+            </select>
+
+            <label for="Strategies">Which of these investment strategies best describes you?</label>
+            <select id="Strategies" name="Strategies" required>
+                <option value="" disabled selected>Select</option>
+                <option>Low risk, guaranteed returns</option>
+                <option>Balanced funds with moderate risk</option>
+                <option>Comfortable with fluctuations for higher growth potential</option>
+                <option>Aggressive, high-growth investments</option>
+            </select>
+
+            <label for="Allocation">What percentage of your total wealth is allocated to market-linked investments(Mutual Funds, Stocks, ETFs, etc.)</label>
+            <select id="Allocation" name="Allocation" required>
+                <option value="" disabled selected>Select</option>
+                <option>Less than 10%</option>
+                <option>10-30%</option>
+                <option>30-50%</option>
+                <option>More than 50%</option>
+            </select>
+
+            <label for="Liquidity">How important is it for you to have quick access to your invested funds?</label>
+            <select id="Liquidity" name="Liquidity" required>
+                <option value="" disabled selected>Select</option>
+                <option>Very important- I need liquidity at all times</option>
+                <option>Somewhat important- I may need funds in emergencies</option>
+                <option>Not very important- I can invest for several years</option>
+                <option>Not important- I have long-term investment goals</option>
+            </select>
+
+            <label for="Response">If the stock market declines significantly, what would be your response?</label>
+            <select id="Response" name="Response" required>
+                <option value="" disabled selected>Select</option>
+                <option>Sell everything and prevent furhter loss</option>
+                <option>Hold investments but stop new investments</option>
+                <option>Wait for recvoery and continue investing as planned</option>
+                <option>Invest more aggressively to take advantage of lower prices</option>
+            </select>
+
+            <label for="investment-tracking">How often do you track your investments?</label>
+            <select id="investment-tracking" name="investment-tracking" required>
+                <option value="" disabled selected>Select</option>
+                <option>I do not track them at all</option>
+                <option>Occasionally (once a year)</option>
+                <option>Regularly (every quarter)</option>
+                <option>Frequently (daily/weekly)</option>
+            </select>
+
+            <label for="Experience">How often do you track your investments?</label>
+            <select id="Experience" name="Experience" required>
+                <option value="" disabled selected>Select</option>
+                <option>No experience</option>
+                <option>Limited Experience</option>
+                <option>Some experience, I have invested in mutual funds before</option>
+                <option>Experienced</option>
+            </select>
+
+            <div class="button-group">
+                <button type="button" onclick="prevPage()">Back</button>
+                <button type="submit">Submit</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+function nextPage() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}
+
+function prevPage() {
+    document.getElementById("page1").style.display = "block";
+    document.getElementById("page2").style.display = "none";
+}
+
+document.getElementById("customForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (!document.getElementById("customForm").checkValidity()) {
+        alert("Please fill all fields correctly.");
+        return;
+    }
+    
+    const formData = new FormData(document.getElementById("customForm"));
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    fetch("https://script.google.com/macros/s/AKfycbwZieTiBUNQpeBRhB6M7H2Vs0u7GqoYXDQ_7xNM8olVmhnXIYY8cqRk0f04sFDRjf7EIg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then(() => {
+        alert("Form submitted successfully!");
+        document.getElementById("customForm").reset();
+        document.getElementById("page1").style.display = "block";
+        document.getElementById("page2").style.display = "none";
+    })
+    .catch(error => alert("Error submitting form: " + error));
+});
+</script>
+
+</body>
+</html>
